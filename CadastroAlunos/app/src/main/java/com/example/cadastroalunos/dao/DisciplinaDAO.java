@@ -44,6 +44,5 @@ public class DisciplinaDAO {
             Log.e("Erro", "Erro ao apagar a disciplina: "+ex.getMessage());
             return false;
         }
-
     }
 }

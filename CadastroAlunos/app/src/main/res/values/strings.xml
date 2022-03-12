@@ -21,4 +21,6 @@
     <string name="descricaoTurma">Descrição da Turma</string>
     <string name="regimeTurma">Regime da Turma</string>
     <string name="periodoTurma">Período da Turma</string>
+    <string name="edProfessor">Professor</string>
+    <string name="turma">Turma</string>
 </resources>

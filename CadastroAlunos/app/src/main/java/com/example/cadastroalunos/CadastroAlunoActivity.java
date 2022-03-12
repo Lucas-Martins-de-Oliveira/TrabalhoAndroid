@@ -16,18 +16,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.cadastroalunos.dao.AlunoDAO;
+import com.example.cadastroalunos.dao.ProfessorDAO;
+import com.example.cadastroalunos.dao.TurmaDAO;
 import com.example.cadastroalunos.model.Aluno;
+import com.example.cadastroalunos.model.Professor;
+import com.example.cadastroalunos.model.Turma;
 import com.example.cadastroalunos.util.CpfMask;
 import com.example.cadastroalunos.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class CadastroAlunoActivity extends AppCompatActivity {
 
@@ -39,6 +46,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     private MaterialSpinner spCursos;
     private MaterialSpinner spPeriodo;
     private LinearLayout lnPrincipal;
+    private MaterialSpinner spTurma;
 
     private int vAno;
     private int vMes;
@@ -80,6 +88,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     private void iniciaSpinners(){
         spCursos = findViewById(R.id.spCursos);
         spPeriodo = findViewById(R.id.spPeriodo);
+        spTurma = findViewById(R.id.spTurma);
 
         String cursos[] = new String[]{"Análise e Desenv. Sistemas",
                 "Administração", "Ciências Contábeis", "Direito",
@@ -88,13 +97,21 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         String periodos[] = new String[]{"1a Série",
                 "2a Série", "3a Série", "4a Série"};
 
+        List<Turma> listTurma = new ArrayList<>();
+        listTurma = TurmaDAO.retornaTurma("", new String[]{}, "descricao asc");
+
+
         ArrayAdapter adapterCursos = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,  cursos);
         ArrayAdapter adapterPeriodo = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,  periodos);
 
+        ArrayAdapter adapterTurma = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1,  listTurma);
+
         spCursos.setAdapter(adapterCursos);
         spPeriodo.setAdapter(adapterPeriodo);
+        spTurma.setAdapter(adapterTurma);
 
         //Ação ao selecionar o item da lista
         spCursos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -158,6 +175,13 @@ public class CadastroAlunoActivity extends AppCompatActivity {
             return;
         }
 
+        //Valida a turma
+        if(spTurma.getSelectedItem() == null){
+            spTurma.setError("Informe uma turma para o Aluno!");
+            spTurma.requestFocus();
+            return;
+        }
+
         salvarAluno();
     }
 
@@ -170,6 +194,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         aluno.setDtMatricula(edDtMatAluno.getText().toString());
         aluno.setCurso(spCursos.getSelectedItem().toString());
         aluno.setPeriodo(spPeriodo.getSelectedItem().toString());
+        aluno.setIdTurma(spTurma.getSelectedItemId());
 
         if(AlunoDAO.salvar(aluno) > 0) {
 
@@ -178,7 +203,6 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         }else
             Util.customSnackBar(lnPrincipal, "Erro ao salvar o aluno ("+aluno.getNome()+") " +
                     "verifique o log", 0);
-
 
     }
 
