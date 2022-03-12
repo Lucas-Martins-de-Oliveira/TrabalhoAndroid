@@ -13,4 +13,5 @@
     <string name="salvar">Salvar</string>
     <string name="curso">Curso</string>
     <string name="addAluno">Adicionar Aluno</string>
+    <string name="nomeProfessor">Nome do Professor</string>
 </resources>
