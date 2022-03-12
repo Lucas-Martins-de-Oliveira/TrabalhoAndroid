@@ -46,6 +46,8 @@ public class CadastroProfessorActivity extends AppCompatActivity {
             edCpfProfessor.requestFocus();
             return;
         }
+
+        salvarProfessor();
     }
 
     public void salvarProfessor() {
