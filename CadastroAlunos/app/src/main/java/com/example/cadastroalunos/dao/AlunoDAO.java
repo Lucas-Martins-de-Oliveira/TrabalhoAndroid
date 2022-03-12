@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.example.cadastroalunos.model.Aluno;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +44,5 @@ public class AlunoDAO {
             Log.e("Erro", "Erro ao apagar o aluno: "+ex.getMessage());
             return false;
         }
-
     }
 }

@@ -16,4 +16,5 @@
     <string name="edNomeDisciplina">Nome da Disciplina</string>
     <string name="cadastro_de_alunos">Cadastro de Alunos</string>
     <string name="cadastro_de_disciplinas">Cadastro de Disciplinas</string>
+    <string name="nomeProfessor">Nome do Professor</string>
 </resources>
