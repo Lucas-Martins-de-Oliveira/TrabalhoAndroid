@@ -20,6 +20,12 @@
             android:name=".CadastroProfessorActivity"
             android:exported="false" />
         <activity
+            android:name=".ListaDisciplinaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroDisciplinaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaAlunoActivity"
             android:exported="false" />
         <activity

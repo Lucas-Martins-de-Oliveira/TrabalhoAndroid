@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_cadastro_aluno.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_cadastro_professor.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_lista_aluno.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_lista_professor.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_view_professor.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/card_view_aluno.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/card_view_professor.xml" value="0.20416666666666666" />
-        <entry key="..\:/posGraduacao/Android/TrabalhoAndroid/CadastroAlunos/app/src/main/res/menu/menu_cadastro.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_cadastro_aluno.xml" value="0.1" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_cadastro_disciplina.xml" value="0.1" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_lista_aluno.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_lista_disciplina.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/card_view_aluno.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/card_view_disciplina.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/menu/menu_cadastro.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/menu/menu_lista.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_cadastro_professor.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_lista_professor.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/activity_view_professor.xml" value="0.20416666666666666" />
+        <entry key="..\:/Projetos/TrabalhoAndroid/CadastroAlunos/app/src/main/res/layout/card_view_professor.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_cadastro_aluno.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_lista_aluno.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />

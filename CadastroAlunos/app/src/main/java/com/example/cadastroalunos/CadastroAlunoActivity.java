@@ -1,6 +1,7 @@
 package com.example.cadastroalunos;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import fr.ganfra.materialspinner.MaterialSpinner;
@@ -48,6 +49,10 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_aluno);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        actionBar.setTitle("Cadastro de Aluno");
 
         edRaAluno = findViewById(R.id.edRaAluno);
         edNomeAluno = findViewById(R.id.edNomeAluno);
