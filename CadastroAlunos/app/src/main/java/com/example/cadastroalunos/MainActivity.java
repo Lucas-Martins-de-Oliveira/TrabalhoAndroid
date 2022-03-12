@@ -1,5 +1,6 @@
 package com.example.cadastroalunos;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,12 +15,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
     }
 
 
     public void cadastrarAluno(View view) {
         Intent intent = new Intent(this, ListaAlunoActivity.class);
+        startActivity(intent);
+    }
+
+    public void cadastrarDisciplina(View view) {
+        Intent intent = new Intent(this, ListaDisciplinaActivity.class);
         startActivity(intent);
     }
 }

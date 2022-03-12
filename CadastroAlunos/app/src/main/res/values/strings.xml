@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CadastroAlunos</string>
+    <string name="app_name">Trabalho de Android</string>
     <string name="ra">Ra</string>
     <string name="nome">Nome</string>
     <string name="cpf">CPF</string>
@@ -13,4 +13,7 @@
     <string name="salvar">Salvar</string>
     <string name="curso">Curso</string>
     <string name="addAluno">Adicionar Aluno</string>
+    <string name="edNomeDisciplina">Nome da Disciplina</string>
+    <string name="cadastro_de_alunos">Cadastro de Alunos</string>
+    <string name="cadastro_de_disciplinas">Cadastro de Disciplinas</string>
 </resources>

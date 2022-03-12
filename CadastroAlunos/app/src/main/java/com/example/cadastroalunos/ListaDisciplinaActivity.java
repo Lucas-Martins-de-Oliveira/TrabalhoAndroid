@@ -15,43 +15,44 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.example.cadastroalunos.adapters.AlunoAdapter;
-import com.example.cadastroalunos.dao.AlunoDAO;
-import com.example.cadastroalunos.model.Aluno;
+import com.example.cadastroalunos.adapters.DisciplinaAdapter;
+import com.example.cadastroalunos.dao.DisciplinaDAO;
+import com.example.cadastroalunos.model.Disciplina;
 import com.example.cadastroalunos.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaAlunoActivity extends AppCompatActivity {
+public class ListaDisciplinaActivity extends AppCompatActivity {
 
-    private RecyclerView rvListaAlunos;
+
+    private RecyclerView rvListaDisciplina;
     private LinearLayout lnLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_aluno);
+        setContentView(R.layout.activity_lista_disciplina);
 
         ActionBar actionBar = getSupportActionBar();
 
-        actionBar.setTitle("Listagem de Alunos");
+        actionBar.setTitle("Listagem de Disciplinas");
 
         lnLista = findViewById(R.id.lnLista);
 
-        atualizaListaAluno();
+        atualizaListaDisciplina();
     }
 
-    public void atualizaListaAluno(){
-        List<Aluno> listaAluno = new ArrayList<>();
-        listaAluno = AlunoDAO.retornaAlunos("", new String[]{}, "nome asc");
-        Log.e("PHS", "Tamanho da lista: "+listaAluno.size());
+    public void atualizaListaDisciplina(){
+        List<Disciplina> listaDisciplina = new ArrayList<>();
+        listaDisciplina = DisciplinaDAO.retornaDisciplinas("", new String[]{}, "nome asc");
+        Log.e("PHS", "Tamanho da lista: "+listaDisciplina.size());
 
-        rvListaAlunos = findViewById(R.id.rvListaAlunos);
-        AlunoAdapter adapter = new AlunoAdapter(listaAluno, this);
+        rvListaDisciplina = findViewById(R.id.rvListaDisciplinas);
+        DisciplinaAdapter adapter = new DisciplinaAdapter(listaDisciplina, this);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-        rvListaAlunos.setLayoutManager(llm);
-        rvListaAlunos.setAdapter(adapter);
+        rvListaDisciplina.setLayoutManager(llm);
+        rvListaDisciplina.setAdapter(adapter);
     }
 
     @Override
@@ -65,15 +66,15 @@ public class ListaAlunoActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.mn_add:
-                abrirCadastroAluno();
+                abrirCadastroDisciplina();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void abrirCadastroAluno() {
-        Intent intent = new Intent(this, CadastroAlunoActivity.class);
+    private void abrirCadastroDisciplina() {
+        Intent intent = new Intent(this, CadastroDisciplinaActivity.class);
         startActivityForResult(intent, 1);
     }
 
@@ -82,8 +83,8 @@ public class ListaAlunoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_OK){
-            Util.customSnackBar(lnLista, "Aluno salvo com sucesso!", 1);
+            Util.customSnackBar(lnLista, "Disciplina salva com sucesso!", 1);
         }
-        atualizaListaAluno();
+        atualizaListaDisciplina();
     }
 }
