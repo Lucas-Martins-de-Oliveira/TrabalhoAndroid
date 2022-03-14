@@ -32,6 +32,7 @@ public class CadastroTurmaActivity extends AppCompatActivity {
 
         edDescricaoTurma = findViewById(R.id.edDescricaoTurma);
         edRegimeTurma = findViewById(R.id.edRegimeTurma);
+        edPeriodoTurma = findViewById(R.id.edPeriodoTurma);
         lnPrincipal = findViewById(R.id.lnPrincipal);
     }
 

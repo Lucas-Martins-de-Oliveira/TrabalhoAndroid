@@ -23,4 +23,5 @@
     <string name="periodoTurma">Período da Turma</string>
     <string name="edProfessor">Professor</string>
     <string name="turma">Turma</string>
+    <string name="cadastro_de_turma">Cadastro de Turma</string>
 </resources>

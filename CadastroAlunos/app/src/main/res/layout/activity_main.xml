@@ -31,5 +31,13 @@
         android:text="@string/cadastro_de_professores"
         android:elevation="15dp"
         android:onClick="cadastrarProfessor"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_cad_aluno"
+        android:drawableTop="@mipmap/ic_cad_aluno"
+        android:text="@string/cadastro_de_turma"
+        android:elevation="15dp"
+        android:onClick="cadastrarTurma"/>
 
 </LinearLayout>
