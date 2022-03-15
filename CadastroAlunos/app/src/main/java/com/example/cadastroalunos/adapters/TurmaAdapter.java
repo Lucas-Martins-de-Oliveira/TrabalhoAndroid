@@ -34,7 +34,7 @@ public class TurmaAdapter extends RecyclerView.Adapter<TurmaAdapter.TurmaViewHol
             super(itemView);
 
             edDescricaoTurma = (TextInputEditText)itemView.findViewById(R.id.edDescricaoTurma);
-            edPeriodoTurma = (TextInputEditText)itemView.findViewById(R.id.edPeriodoAluno);
+            edPeriodoTurma = (TextInputEditText)itemView.findViewById(R.id.edPeriodoTurma);
             edRegimeTurma = (TextInputEditText)itemView.findViewById(R.id.edRegimeTurma);
         }
     }

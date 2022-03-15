@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -117,14 +118,7 @@
         android:id="@+id/spTurma"
         app:ms_arrowColor="?attr/colorPrimary"
         app:ms_floatingLabelText="@string/turma"
-        app:ms_hint="@string/selecionePeriodo"
+        app:ms_hint="Selecione a Turma"
         app:ms_multiline="false"
         android:layout_margin="10dp"/>
-
-    <AutoCompleteTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/atTurma"
-        />
-
 </LinearLayout>

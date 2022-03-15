@@ -3,7 +3,6 @@ package com.example.cadastroalunos.model;
 import com.orm.SugarRecord;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 public class Turma extends SugarRecord {
     private String descricao;
@@ -19,9 +18,7 @@ public class Turma extends SugarRecord {
         this.periodo = periodo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
+    public String getDescricao() { return descricao; }
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;

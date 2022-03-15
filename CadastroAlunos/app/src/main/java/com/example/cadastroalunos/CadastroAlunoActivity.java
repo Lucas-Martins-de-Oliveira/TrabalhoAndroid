@@ -100,7 +100,6 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         List<Turma> listTurma = new ArrayList<>();
         listTurma = TurmaDAO.retornaTurma("", new String[]{}, "descricao asc");
 
-
         ArrayAdapter adapterCursos = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,  cursos);
         ArrayAdapter adapterPeriodo = new ArrayAdapter(this,
