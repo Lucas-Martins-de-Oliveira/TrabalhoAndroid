@@ -24,4 +24,7 @@
     <string name="edProfessor">Professor</string>
     <string name="turma">Turma</string>
     <string name="cadastro_de_turma">Cadastro de Turma</string>
+    <string name="selecioneTurma">Selecione a Turma</string>
+    <string name="selecioneDisciplina">Selecione a Disciplina</string>
+    <string name="selecioneProfessor">Selecione o Professor</string>
 </resources>

@@ -8,16 +8,30 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import com.example.cadastroalunos.dao.DisciplinaDAO;
+import com.example.cadastroalunos.dao.ProfessorDAO;
+import com.example.cadastroalunos.dao.TurmaDAO;
 import com.example.cadastroalunos.model.Disciplina;
+import com.example.cadastroalunos.model.Professor;
+import com.example.cadastroalunos.model.Turma;
 import com.example.cadastroalunos.util.Util;
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class CadastroDisciplinaActivity extends AppCompatActivity {
 
     private TextInputEditText edNomeDisciplina;
+    private MaterialSpinner spProfessor;
     private LinearLayout lnPrincipal;
 
     @Override
@@ -32,6 +46,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
         edNomeDisciplina = findViewById(R.id.edNomeDisciplina);
         lnPrincipal = findViewById(R.id.lnPrincipal);
 
+        iniciaSpinners();
     }
 
     //Validação dos campos
@@ -43,16 +58,26 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
             return;
         }
 
+        //Valida a professor
+        if(spProfessor.getSelectedItem() == null){
+            spProfessor.setError("Informe um professor para a Disciplina!");
+            spProfessor.requestFocus();
+            return;
+        }
+
         salvarDisciplina();
     }
 
     private void limparCampos() {
         edNomeDisciplina.setText("");
+        spProfessor.setSelection(Adapter.NO_SELECTION);
     }
 
     public void salvarDisciplina(){
         Disciplina disciplina = new Disciplina();
         disciplina.setNome(edNomeDisciplina.getText().toString());
+        Professor professor = (Professor) spProfessor.getSelectedItem();
+        disciplina.setIDProfessor(professor.getId());
 
         if(DisciplinaDAO.salvar(disciplina) > 0) {
 
@@ -86,5 +111,18 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void iniciaSpinners(){
+        spProfessor = findViewById(R.id.spProfessor);
+
+        List<Professor> listProfessor = new ArrayList<>();
+        listProfessor = ProfessorDAO.retornaProfessores("", new String[]{}, "nome asc");
+
+        ArrayAdapter adapterProfessor = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1,  listProfessor);
+
+        spProfessor.setAdapter(adapterProfessor);
+
     }
 }

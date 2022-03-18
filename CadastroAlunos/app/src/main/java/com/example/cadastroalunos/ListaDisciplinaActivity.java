@@ -27,7 +27,7 @@ public class ListaDisciplinaActivity extends AppCompatActivity {
 
 
     private RecyclerView rvListaDisciplina;
-    private LinearLayout lnLista;
+    private LinearLayout lnListaDisciplinas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class ListaDisciplinaActivity extends AppCompatActivity {
 
         actionBar.setTitle("Listagem de Disciplinas");
 
-        lnLista = findViewById(R.id.lnLista);
+        lnListaDisciplinas = findViewById(R.id.lnListaDisciplinas);
 
         atualizaListaDisciplina();
     }
@@ -83,7 +83,7 @@ public class ListaDisciplinaActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_OK){
-            Util.customSnackBar(lnLista, "Disciplina salva com sucesso!", 1);
+            Util.customSnackBar(lnListaDisciplinas, "Disciplina salva com sucesso!", 1);
         }
         atualizaListaDisciplina();
     }

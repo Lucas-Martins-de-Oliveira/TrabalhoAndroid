@@ -1,16 +1,19 @@
 package com.example.cadastroalunos.model;
 
+import androidx.annotation.NonNull;
+
 import com.orm.SugarRecord;
 
 public class Disciplina extends SugarRecord {
     private String nome;
-    private Integer idProfessor;
+
+    private long idProfessor;
 
     public Disciplina() {
 
     }
 
-    public Disciplina(String nome, Integer idProfessor) {
+    public Disciplina(String nome, long idProfessor) {
         this.nome = nome;
         this.idProfessor = idProfessor;
     }
@@ -23,11 +26,17 @@ public class Disciplina extends SugarRecord {
         this.nome = nome;
     }
 
-    public Integer getIDProfessor() {
+    public long getIDProfessor() {
         return idProfessor;
     }
 
-    public void setIDProfessor(Integer idProfessor) {
+    public void setIDProfessor(long idProfessor) {
         this.idProfessor = idProfessor;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getNome();
     }
 }

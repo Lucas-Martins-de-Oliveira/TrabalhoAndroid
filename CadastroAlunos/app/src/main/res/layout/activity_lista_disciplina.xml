@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ListaDisciplinaActivity"
     android:orientation="vertical"
-    android:id="@+id/lvLista">
+    android:id="@+id/lnListaDisciplinas">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

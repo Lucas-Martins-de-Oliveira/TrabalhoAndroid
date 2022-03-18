@@ -46,7 +46,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     private MaterialSpinner spCursos;
     private MaterialSpinner spPeriodo;
     private LinearLayout lnPrincipal;
-    private MaterialSpinner spTurma;
+    private MaterialSpinner spTurmaAluno;
 
     private int vAno;
     private int vMes;
@@ -88,7 +88,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
     private void iniciaSpinners(){
         spCursos = findViewById(R.id.spCursos);
         spPeriodo = findViewById(R.id.spPeriodo);
-        spTurma = findViewById(R.id.spTurma);
+        spTurmaAluno = findViewById(R.id.spTurmaAluno);
 
         String cursos[] = new String[]{"Análise e Desenv. Sistemas",
                 "Administração", "Ciências Contábeis", "Direito",
@@ -105,36 +105,12 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         ArrayAdapter adapterPeriodo = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,  periodos);
 
-        ArrayAdapter adapterTurma = new ArrayAdapter(this,
+        ArrayAdapter adapterTurmaAluno = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_1,  listTurma);
 
         spCursos.setAdapter(adapterCursos);
         spPeriodo.setAdapter(adapterPeriodo);
-        spTurma.setAdapter(adapterTurma);
-
-        //Ação ao selecionar o item da lista
-        spCursos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i == 0){
-
-                    /*Button btADS = new Button(getBaseContext());
-                    btADS.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                             LinearLayout.LayoutParams.WRAP_CONTENT));
-                    btADS.setText("Botao ADS");
-                    btADS.setBackgroundColor(getColor(R.color.teal_200));
-
-                    llPrincipal.addView(btADS);*/
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-
+        spTurmaAluno.setAdapter(adapterTurmaAluno);
     }
 
     //Validação dos campos
@@ -175,9 +151,9 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         }
 
         //Valida a turma
-        if(spTurma.getSelectedItem() == null){
-            spTurma.setError("Informe uma turma para o Aluno!");
-            spTurma.requestFocus();
+        if(spTurmaAluno.getSelectedItem() == null){
+            spTurmaAluno.setError("Informe uma turma para o Aluno!");
+            spTurmaAluno.requestFocus();
             return;
         }
 
@@ -193,7 +169,7 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         aluno.setDtMatricula(edDtMatAluno.getText().toString());
         aluno.setCurso(spCursos.getSelectedItem().toString());
         aluno.setPeriodo(spPeriodo.getSelectedItem().toString());
-        aluno.setIdTurma(spTurma.getSelectedItemId());
+        aluno.setIdTurma(spTurmaAluno.getSelectedItemId());
 
         if(AlunoDAO.salvar(aluno) > 0) {
 
