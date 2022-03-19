@@ -2,7 +2,6 @@ package com.example.cadastroalunos.dao;
 
 import android.util.Log;
 
-import com.example.cadastroalunos.model.Turma;
 import com.example.cadastroalunos.model.TurmaDisciplinas;
 
 import java.util.ArrayList;

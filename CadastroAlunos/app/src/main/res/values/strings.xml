@@ -27,4 +27,10 @@
     <string name="selecioneTurma">Selecione a Turma</string>
     <string name="selecioneDisciplina">Selecione a Disciplina</string>
     <string name="selecioneProfessor">Selecione o Professor</string>
+    <string name="selecioneAluno">Selecione o Aluno</string>
+    <string name="cadastro_de_turma_disciplina">Cadastro de Disciplina na Turma</string>
+    <string name="cadastro_de_turma_aluno">Cadastro de Aluno na Turma</string>
+    <string name="edNomeAluno">Nome do Aluno</string>
+    <string name="lancarNotas">Lançar Notas</string>
+    <string name="lancarFrequencias">Lançar Frequências</string>
 </resources>

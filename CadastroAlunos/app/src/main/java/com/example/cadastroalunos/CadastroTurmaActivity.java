@@ -34,10 +34,7 @@ public class CadastroTurmaActivity extends AppCompatActivity {
     private TextInputEditText edDescricaoTurma;
     private TextInputEditText edRegimeTurma;
     private TextInputEditText edPeriodoTurma;
-    private MaterialSpinner spTurmaDisciplina;
     private LinearLayout lnPrincipal;
-    private RecyclerView rvListaTurmaDisciplinas;
-    List<Disciplina> listDisciplina = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +48,6 @@ public class CadastroTurmaActivity extends AppCompatActivity {
         edRegimeTurma = findViewById(R.id.edRegimeTurma);
         edPeriodoTurma = findViewById(R.id.edPeriodoTurma);
         lnPrincipal = findViewById(R.id.lnPrincipal);
-
-        iniciaSpinners();
-
-        atualizaListaDisciplina();
     }
 
     private void validaCampos() {
@@ -76,12 +69,6 @@ public class CadastroTurmaActivity extends AppCompatActivity {
             return;
         }
 
-        if (listDisciplina.isEmpty()) {
-            spTurmaDisciplina.setError("Informe pelo menos 1 disciplina para a Turma!");
-            spTurmaDisciplina.requestFocus();
-            return;
-        }
-
         salvarTurma();
     }
 
@@ -91,17 +78,7 @@ public class CadastroTurmaActivity extends AppCompatActivity {
         turma.setPeriodo(edPeriodoTurma.getText().toString());
         turma.setRegime(edRegimeTurma.getText().toString());
 
-        long idTurma = TurmaDAO.salvar(turma);
-
-        if (idTurma > 0) {
-
-            for (Disciplina disciplina : listDisciplina) {
-                TurmaDisciplinas turmaDisciplinas = new TurmaDisciplinas();
-                turmaDisciplinas.setIdTurma(idTurma);
-                turmaDisciplinas.setIdDisciplina(disciplina.getId());
-                turmaDisciplinas.save();
-            }
-
+        if (TurmaDAO.salvar(turma) > 0) {
             setResult(RESULT_OK);
             finish();
         } else {
@@ -135,50 +112,5 @@ public class CadastroTurmaActivity extends AppCompatActivity {
         edPeriodoTurma.setText("");
         edRegimeTurma.setText("");
         edDescricaoTurma.setText("");
-    }
-
-    private void iniciaSpinners() {
-
-        spTurmaDisciplina = findViewById(R.id.spTurmaDisciplina);
-
-        List<Disciplina> listDisciplina = new ArrayList<>();
-        listDisciplina = DisciplinaDAO.retornaDisciplinas("", new String[]{}, "nome asc");
-
-
-        ArrayAdapter adapterTurmaDisciplina = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1,  listDisciplina);
-
-        spTurmaDisciplina.setAdapter(adapterTurmaDisciplina);
-
-    }
-
-    public void AddDisciplina(View view) {
-        //Valida a turma
-        if(spTurmaDisciplina.getSelectedItem() == null){
-            spTurmaDisciplina.setError("Selecione uma Disciplina!");
-            spTurmaDisciplina.requestFocus();
-            return;
-        }
-
-        Disciplina disciplina = (Disciplina) spTurmaDisciplina.getSelectedItem();
-
-        if (listDisciplina.contains(disciplina)) {
-            spTurmaDisciplina.setError(disciplina.getNome() + " já adicionado, Verifique!");
-            spTurmaDisciplina.requestFocus();
-            return;
-        }
-
-        listDisciplina.add((Disciplina) spTurmaDisciplina.getSelectedItem());
-
-        atualizaListaDisciplina();
-    }
-
-    public void atualizaListaDisciplina(){
-
-        rvListaTurmaDisciplinas = findViewById(R.id.rvListaTurmaDisciplinas);
-        DisciplinaAdapter adapter = new DisciplinaAdapter(listDisciplina, this);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        rvListaTurmaDisciplinas.setLayoutManager(llm);
-        rvListaTurmaDisciplinas.setAdapter(adapter);
     }
 }

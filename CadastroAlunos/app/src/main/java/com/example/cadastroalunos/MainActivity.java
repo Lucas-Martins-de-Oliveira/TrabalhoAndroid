@@ -39,4 +39,24 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListaTurmaActivity.class);
         startActivity(intent);
     }
+
+    public void cadastrarTurmaDisciplina(View view) {
+        Intent intent = new Intent(this, CadastroTurmaDisciplinaActivity.class);
+        startActivity(intent);
+    }
+
+    public void cadastrarTurmaAluno(View view) {
+        Intent intent = new Intent(this, CadastroTurmaAlunoActivity.class);
+        startActivity(intent);
+    }
+
+    public void lancarNotas(View view) {
+        Intent intent = new Intent(this, LancamentoNotasActivity.class);
+        startActivity(intent);
+    }
+
+    public void lancarFrequencia(View view) {
+        Intent intent = new Intent(this, LancamentoFrequenciaActivity.class);
+        startActivity(intent);
+    }
 }

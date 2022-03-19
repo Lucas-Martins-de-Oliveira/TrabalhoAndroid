@@ -7,6 +7,9 @@ import com.orm.SugarRecord;
 public class TurmaDisciplinas extends SugarRecord {
     private long idTurma;
 
+    private long idDisciplina;
+
+
     public long getIdTurma() {
         return idTurma;
     }
@@ -22,8 +25,6 @@ public class TurmaDisciplinas extends SugarRecord {
     public void setIdDisciplina(long idDisciplina) {
         this.idDisciplina = idDisciplina;
     }
-
-    private long idDisciplina;
 
     public TurmaDisciplinas() {
     }

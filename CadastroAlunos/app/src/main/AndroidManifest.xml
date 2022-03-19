@@ -11,6 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CadastroAlunos">
         <activity
+            android:name=".LancamentoFrequenciaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LancamentoNotasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroTurmaDisciplinaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CadastroTurmaAlunoActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaTurmaActivity"
             android:exported="false" />
         <activity

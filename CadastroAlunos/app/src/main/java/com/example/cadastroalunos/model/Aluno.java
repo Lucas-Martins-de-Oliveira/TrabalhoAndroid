@@ -1,5 +1,7 @@
 package com.example.cadastroalunos.model;
 
+import androidx.annotation.NonNull;
+
 import com.orm.SugarRecord;
 
 import java.util.Objects;
@@ -96,6 +98,12 @@ public class Aluno extends SugarRecord {
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
         return ra == aluno.ra;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getRa() + " - " + getNome();
     }
 
     @Override
