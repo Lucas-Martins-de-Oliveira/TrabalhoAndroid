@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lancarNotasFrequencias(View view) {
-        Intent intent = new Intent(this, LancamentoNotaFrequenciaActivity.class);
+        Intent intent = new Intent(this, ListaLancamentoNotaFrequenciaActivity.class);
         startActivity(intent);
     }
 }

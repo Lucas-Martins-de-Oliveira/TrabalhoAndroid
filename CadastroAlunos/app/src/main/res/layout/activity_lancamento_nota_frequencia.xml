@@ -75,18 +75,8 @@
                         android:backgroundTint="@color/white"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:contentDescription="button_icon_desc"
-                android:layout_gravity="center_vertical"
-                android:onClick="AddNotaFrequencia"
-                android:src="@drawable/ic_add" />
-
 
         </LinearLayout>
-
 
     </LinearLayout>
 </ScrollView>

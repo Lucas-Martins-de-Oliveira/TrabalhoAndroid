@@ -18,7 +18,7 @@ public class TurmaDisciplinasDAO {
         }
     }
 
-    public static TurmaDisciplinas getTurmaDisciplinas(int id){
+    public static TurmaDisciplinas getTurmaDisciplinas(long id){
         try{
             return TurmaDisciplinas.findById(TurmaDisciplinas.class, id);
         }catch (Exception ex){

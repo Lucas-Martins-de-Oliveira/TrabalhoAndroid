@@ -1,11 +1,15 @@
 package com.example.cadastroalunos;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,6 +64,95 @@ public class LancamentoNotaFrequenciaActivity extends AppCompatActivity {
         edFrequencia = findViewById(R.id.edFrequencia);
 
         iniciarSpinnerTurma();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflaterMenu = getMenuInflater();
+        inflaterMenu.inflate(R.menu.menu_cadastro, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.mn_limpar:
+                //TODO: adicionar método  de limpar dados
+                limparCampos();
+                return true;
+            case R.id.mn_salvar:
+                //TODO: adicionar método  de salvar dados
+                validaCampos();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void validaCampos() {
+        //Valida a turma
+        Turma turma = (Turma) spTurma.getSelectedItem();
+        if(spTurma.getSelectedItem() == null){
+            spTurma.setError("Informe uma Turma!");
+            spTurma.requestFocus();
+            return;
+        }
+
+        //Valida o Aluno
+        Aluno aluno = (Aluno) spAluno.getSelectedItem();
+        if(aluno == null){
+            spAluno.setError("Informe um Aluno!");
+            spAluno.requestFocus();
+            return;
+        }
+
+        //Valida a Disciplina
+        Disciplina disciplina = (Disciplina) spDisciplina.getSelectedItem();
+        if(disciplina == null){
+            spDisciplina.setError("Informe a Disciplina!");
+            spDisciplina.requestFocus();
+            return;
+        }
+
+        Double nota = 0.0;
+        try {
+            nota = Double.parseDouble(edNota.getText().toString());
+            if (!between(nota, 0.0, 100.0)) {
+                throw new Exception("Informe uma nota entre 0 - 100!");
+            }
+        } catch(Exception e){
+            edNota.setError("Informe uma nota entre 0 - 100!");
+            edNota.requestFocus();
+            return;
+        }
+
+        Double frequencia = 0.0;
+        try {
+            frequencia = Double.parseDouble(edFrequencia.getText().toString());
+            if (!between(frequencia, 0.0, 100.0)) {
+                throw new Exception("Informe uma frequencia entre 0 - 100!");
+            }
+        } catch (Exception e) {
+            edFrequencia.setError("Informe uma frequencia entre 0 - 100!");
+            edFrequencia.requestFocus();
+            return;
+        }
+
+        TurmaAlunos turmaAluno = TurmaAlunosDAO.retornaTurmaAlunoByTurmaByAluno(turma.getId(), aluno.getId());
+        if (turmaAluno == null) {
+            spAluno.setError("Aluno: " + aluno.getNome() + " não encontrado para a Turma: " + turma.getDescricao() + "!");
+            spAluno.requestFocus();
+            return;
+        }
+
+        TurmaDisciplinas turmaDisciplinas = TurmaDisciplinasDAO.retornaTurmaDisciplinaByTurmaByDisciplina(turma.getId(), disciplina.getId());
+        if (turmaDisciplinas == null) {
+            spDisciplina.setError("Disciplina: " + disciplina.getNome() + " não encontrado para a Turma: " + turma.getDescricao() + "!");
+            spDisciplina.requestFocus();
+            return;
+        }
+
+        salvaLancamento(turmaAluno.getId(), turmaDisciplinas.getId(), nota, frequencia);
     }
 
     public void iniciarSpinnerTurma() {
@@ -143,81 +236,18 @@ public class LancamentoNotaFrequenciaActivity extends AppCompatActivity {
         spDisciplina.setAdapter(adapterDisciplinas);
     }
 
-    public void AddNotaFrequencia(View view) {
-
-        //Valida a turma
-        Turma turma = (Turma) spTurma.getSelectedItem();
-        if(spTurma.getSelectedItem() == null){
-            spTurma.setError("Informe uma Turma!");
-            spTurma.requestFocus();
-            return;
-        }
-
-        //Valida o Aluno
-        Aluno aluno = (Aluno) spAluno.getSelectedItem();
-        if(aluno == null){
-            spAluno.setError("Informe um Aluno!");
-            spAluno.requestFocus();
-            return;
-        }
-
-        //Valida a Disciplina
-        Disciplina disciplina = (Disciplina) spDisciplina.getSelectedItem();
-        if(disciplina == null){
-            spDisciplina.setError("Informe a Disciplina!");
-            spDisciplina.requestFocus();
-            return;
-        }
-
-        Double nota = 0.0;
-        try {
-            nota = Double.parseDouble(edNota.getText().toString());
-            if (!between(nota, 0.0, 100.0)) {
-                throw new Exception("Informe uma nota entre 0 - 100!");
-            }
-        } catch(Exception e){
-            edNota.setError("Informe uma nota entre 0 - 100!");
-            edNota.requestFocus();
-            return;
-        }
-
-        Double frequencia = 0.0;
-        try {
-            frequencia = Double.parseDouble(edFrequencia.getText().toString());
-            if (!between(frequencia, 0.0, 100.0)) {
-                throw new Exception("Informe uma frequencia entre 0 - 100!");
-            }
-        } catch (Exception e) {
-            edFrequencia.setError("Informe uma frequencia entre 0 - 100!");
-            edFrequencia.requestFocus();
-            return;
-        }
-
-        TurmaAlunos turmaAluno = TurmaAlunosDAO.retornaTurmaAlunoByTurmaByAluno(turma.getId(), aluno.getId());
-        if (turmaAluno == null) {
-            spAluno.setError("Aluno: " + aluno.getNome() + " não encontrado para a Turma: " + turma.getDescricao() + "!");
-            spAluno.requestFocus();
-            return;
-        }
-
-        TurmaDisciplinas turmaDisciplinas = TurmaDisciplinasDAO.retornaTurmaDisciplinaByTurmaByDisciplina(turma.getId(), disciplina.getId());
-        if (turmaDisciplinas == null) {
-            spDisciplina.setError("Disciplina: " + disciplina.getNome() + " não encontrado para a Turma: " + turma.getDescricao() + "!");
-            spDisciplina.requestFocus();
-            return;
-        }
-
+    public void salvaLancamento(long idTurmaAluno, long idTurmaDisciplina, Double nota, Double frequencia) {
         ControleNotaFrequencia cnf = new ControleNotaFrequencia();
-        cnf.setIdTurmaAluno(turmaAluno.getId());
-        cnf.setIdTurmaDisciplina(turmaDisciplinas.getId());
+        cnf.setIdTurmaAluno(idTurmaAluno);
+        cnf.setIdTurmaDisciplina(idTurmaDisciplina);
         cnf.setNota(nota);
         cnf.setFrequencia(frequencia);
 
         if(ControleNotaFrequenciaDAO.salvar(cnf) > 0) {
-            Util.customSnackBar(lnPrincipal, "Lançamento salvo com sucesso!", 1);
-            limparCampos();
+            setResult(RESULT_OK);
+            finish();
         }else
-            Util.customSnackBar(lnPrincipal, "Erro ao salvar o aluno ("+aluno.getNome()+") " +
+            Util.customSnackBar(lnPrincipal, "Erro ao salvar o aluno lançamento " +
                     "verifique o log", 0);
     }
 

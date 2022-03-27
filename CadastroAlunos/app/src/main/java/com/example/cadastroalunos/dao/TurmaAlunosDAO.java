@@ -17,7 +17,7 @@ public class TurmaAlunosDAO {
         }
     }
 
-    public static TurmaAlunos getTurmaAlunos(int id){
+    public static TurmaAlunos getTurmaAlunos(long id){
         try{
             return TurmaAlunos.findById(TurmaAlunos.class, id);
         }catch (Exception ex){
