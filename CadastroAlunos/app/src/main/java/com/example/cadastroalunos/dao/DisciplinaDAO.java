@@ -18,7 +18,7 @@ public class DisciplinaDAO {
         }
     }
 
-    public static Disciplina getDisciplina(int id){
+    public static Disciplina getDisciplina(long id){
         try{
             return Disciplina.findById(Disciplina.class, id);
         }catch (Exception ex){

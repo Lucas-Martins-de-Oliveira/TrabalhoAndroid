@@ -4,6 +4,8 @@ import com.orm.SugarRecord;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class Turma extends SugarRecord {
     private String descricao;
     private String regime;
@@ -46,6 +48,11 @@ public class Turma extends SugarRecord {
         if (obj == null || getClass() != obj.getClass()) return false;
         Turma turma = (Turma) obj;
         return descricao == turma.descricao;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(descricao);
     }
 
     @NonNull

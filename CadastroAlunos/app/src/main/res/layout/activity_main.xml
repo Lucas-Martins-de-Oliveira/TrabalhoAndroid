@@ -80,18 +80,9 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_cad_aluno"
                 android:drawableTop="@mipmap/ic_cad_aluno"
-                android:text="@string/lancarNotas"
+                android:text="@string/lancarNotaFrequencia"
                 android:elevation="15dp"
-                android:onClick="lancarNotas"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_cad_aluno"
-                android:drawableTop="@mipmap/ic_cad_aluno"
-                android:text="@string/lancarFrequencias"
-                android:elevation="15dp"
-                android:onClick="lancarFrequencia"/>
+                android:onClick="lancarNotasFrequencias"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

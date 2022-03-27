@@ -18,7 +18,7 @@ public class AlunoDAO {
         }
     }
 
-    public static Aluno getAluno(int id){
+    public static Aluno getAluno(long id){
          try{
             return Aluno.findById(Aluno.class, id);
          }catch (Exception ex){

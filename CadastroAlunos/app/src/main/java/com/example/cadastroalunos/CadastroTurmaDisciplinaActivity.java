@@ -11,17 +11,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 
 import com.example.cadastroalunos.adapters.DisciplinaAdapter;
 import com.example.cadastroalunos.dao.AlunoDAO;
 import com.example.cadastroalunos.dao.DisciplinaDAO;
+import com.example.cadastroalunos.dao.TurmaAlunosDAO;
 import com.example.cadastroalunos.dao.TurmaDAO;
 import com.example.cadastroalunos.dao.TurmaDisciplinasDAO;
 import com.example.cadastroalunos.model.Aluno;
 import com.example.cadastroalunos.model.Disciplina;
 import com.example.cadastroalunos.model.Turma;
+import com.example.cadastroalunos.model.TurmaAlunos;
 import com.example.cadastroalunos.model.TurmaDisciplinas;
 import com.example.cadastroalunos.util.Util;
 
@@ -48,9 +51,10 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
 
         lnPrincipal = findViewById(R.id.lnPrincipal);
 
-        iniciaSpinners();
+        iniciarSpinnerDisciplinas();
+        iniciaSpinnerTurma();
 
-        atualizaListaDisciplina();
+        carregaListaDisciplinasByTurma(-1);
     }
 
     @Override
@@ -78,7 +82,7 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
         // TODO: Implementar o limpar campos
     }
 
-    private void iniciaSpinners() {
+    private void iniciaSpinnerTurma() {
 
         //Carrega as turmas
         spTurma = findViewById(R.id.spTurma);
@@ -92,18 +96,37 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
 
         spTurma.setAdapter(adapterTurma);
 
+        spTurma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position >= 0) {
+                    Turma turma = (Turma) parent.getItemAtPosition(position);
+                    carregaListaDisciplinasByTurma(turma.getId());
+                } else {
+                    carregaListaDisciplinasByTurma(-1);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void iniciarSpinnerDisciplinas() {
         //Carrega as Disciplinas
         spDisciplina = findViewById(R.id.spDisciplina);
 
-        List<Disciplina> listDisciplinas = new ArrayList<>();
-        listDisciplinas = DisciplinaDAO.retornaDisciplinas("", new String[]{}, "nome asc");
+        List<Disciplina> listspDisciplinas = new ArrayList<>();
+        listspDisciplinas = DisciplinaDAO.retornaDisciplinas("", new String[]{}, "nome asc");
 
 
         ArrayAdapter adapterDisciplina = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1,  listDisciplinas);
+                android.R.layout.simple_list_item_1,  listspDisciplinas);
 
         spDisciplina.setAdapter(adapterDisciplina);
-
     }
 
     private void validaCampos() {
@@ -140,7 +163,15 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
     }
 
     public void AddDisciplina(View view) {
+
         //Valida a turma
+        if(spTurma.getSelectedItem() == null){
+            spTurma.setError("Selecione uma Turma!");
+            spTurma.requestFocus();
+            return;
+        }
+
+        //Valida a Disciplina
         if(spDisciplina.getSelectedItem() == null){
             spDisciplina.setError("Selecione uma Disciplina!");
             spDisciplina.requestFocus();
@@ -167,5 +198,21 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rvListaTurmaDisciplinas.setLayoutManager(llm);
         rvListaTurmaDisciplinas.setAdapter(adapter);
+    }
+
+    public void carregaListaDisciplinasByTurma(long idTurma) {
+
+        listDisciplina.clear();
+        if (idTurma != -1) {
+            List<TurmaDisciplinas> listTurmaDisciplinas = new ArrayList<>();
+            listTurmaDisciplinas = TurmaDisciplinasDAO.retornaTurmaDisciplinasByTurma(idTurma);
+            for (TurmaDisciplinas turmaDisciplinas : listTurmaDisciplinas) {
+                Disciplina disciplina = DisciplinaDAO.getDisciplina(turmaDisciplinas.getIdDisciplina());
+                if (disciplina != null) {
+                    listDisciplina.add(disciplina);
+                }
+            }
+        }
+        atualizaListaDisciplina();
     }
 }

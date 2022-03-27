@@ -39,11 +39,25 @@ public class TurmaAlunosDAO {
     public static List<TurmaAlunos> retornaTurmaAlunosByTurma(long idTurma){
         List<TurmaAlunos> list = new ArrayList<>();
         try{
-            //list = TurmaAlunos.find(TurmaAlunos.class, "idturma = ?" + idTurma, new String[]{}, "", "orderBy", "");
+            list = TurmaAlunos.find(TurmaAlunos.class, "id_turma = ?", new String[]{String.valueOf(idTurma)}, "", "", "");
         }catch (Exception ex){
             Log.e("Erro", "Erro ao retornar lista de Turma Alunos: "+ex.getMessage());
         }
         return list;
+    }
+
+    public static TurmaAlunos retornaTurmaAlunoByTurmaByAluno(long idTurma, long idAluno){
+        List<TurmaAlunos> list = new ArrayList<>();
+        try{
+            list = TurmaAlunos.find(TurmaAlunos.class, "id_turma = ? and id_aluno = ?", new String[]{String.valueOf(idTurma), String.valueOf(idAluno)}, "", "", "");
+            if (list.isEmpty()) {
+                return null;
+            }
+            return list.get(0);
+        }catch (Exception ex){
+            Log.e("Erro", "Erro ao retornar lista de Turma Alunos: "+ex.getMessage());
+        }
+        return null;
     }
 
     public static boolean delete(TurmaAlunos turmaAlunos){

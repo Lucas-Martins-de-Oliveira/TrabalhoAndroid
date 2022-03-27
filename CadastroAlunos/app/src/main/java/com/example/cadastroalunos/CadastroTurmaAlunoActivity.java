@@ -14,19 +14,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.cadastroalunos.adapters.AlunoAdapter;
-import com.example.cadastroalunos.adapters.DisciplinaAdapter;
 import com.example.cadastroalunos.dao.AlunoDAO;
-import com.example.cadastroalunos.dao.DisciplinaDAO;
 import com.example.cadastroalunos.dao.TurmaAlunosDAO;
 import com.example.cadastroalunos.dao.TurmaDAO;
 import com.example.cadastroalunos.model.Aluno;
-import com.example.cadastroalunos.model.Disciplina;
 import com.example.cadastroalunos.model.Turma;
 import com.example.cadastroalunos.model.TurmaAlunos;
-import com.example.cadastroalunos.model.TurmaDisciplinas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +46,9 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
 
         lnPrincipal = findViewById(R.id.lnPrincipal);
 
-        iniciaSpinners();
+        iniciaSpinnerAluno();
+        iniciaSpinnerTurma();
+        carregaAlunosTurma(-1);
     }
 
     @Override
@@ -79,7 +76,7 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
         // TODO: Implementar o limpar campos
     }
 
-    private void iniciaSpinners() {
+    private void iniciaSpinnerTurma() {
 
         //Carrega as turmas
         spTurma = findViewById(R.id.spTurma);
@@ -103,7 +100,7 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
                     Turma turma = (Turma) arg0.getItemAtPosition(pos);
                     carregaAlunosTurma(turma.getId());
                 } else {
-                    listAluno.clear();
+                    carregaAlunosTurma(-1);
                 }
             }
 
@@ -113,7 +110,9 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void iniciaSpinnerAluno() {
         //Carrega os Alunos
         spAluno = findViewById(R.id.spAluno);
 
@@ -129,14 +128,17 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
 
     private void carregaAlunosTurma(long idTurma) {
         listAluno.clear();
-        List<TurmaAlunos> listTurmaAlunos = new ArrayList<>();
-        listTurmaAlunos = TurmaAlunosDAO.retornaTurmaAlunosByTurma(idTurma);
-        for (TurmaAlunos turmaAlunos : listTurmaAlunos) {
-            Aluno aluno = AlunoDAO.getAluno((int) turmaAlunos.getIdAluno());
-            if (aluno != null) {
-                listAluno.add(aluno);
+        if (idTurma != -1) {
+            List<TurmaAlunos> listTurmaAlunos = new ArrayList<>();
+            listTurmaAlunos = TurmaAlunosDAO.retornaTurmaAlunosByTurma(idTurma);
+            for (TurmaAlunos turmaAlunos : listTurmaAlunos) {
+                Aluno aluno = AlunoDAO.getAluno((int) turmaAlunos.getIdAluno());
+                if (aluno != null) {
+                    listAluno.add(aluno);
+                }
             }
         }
+        atualizaListaAluno();
     }
 
     private void validaCampos() {
@@ -173,7 +175,15 @@ public class CadastroTurmaAlunoActivity extends AppCompatActivity {
     }
 
     public void AddAluno(View view) {
-        //Valida a turma
+
+        //Valida a Turma
+        if(spTurma.getSelectedItem() == null){
+            spTurma.setError("Selecione uma Turma!");
+            spTurma.requestFocus();
+            return;
+        }
+
+        //Valida o Aluno
         if(spAluno.getSelectedItem() == null){
             spAluno.setError("Selecione um Aluno!");
             spAluno.requestFocus();

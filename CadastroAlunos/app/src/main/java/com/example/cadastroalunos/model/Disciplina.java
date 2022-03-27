@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 
 import com.orm.SugarRecord;
 
+import java.util.Objects;
+
 public class Disciplina extends SugarRecord {
     private String nome;
 
@@ -34,9 +36,22 @@ public class Disciplina extends SugarRecord {
         this.idProfessor = idProfessor;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Disciplina disciplina = (Disciplina) obj;
+        return ((nome == disciplina.nome) && (idProfessor == disciplina.idProfessor));
+    }
+
     @NonNull
     @Override
     public String toString() {
         return getNome();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 }

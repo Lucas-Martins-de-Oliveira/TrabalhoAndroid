@@ -31,6 +31,9 @@
     <string name="cadastro_de_turma_disciplina">Cadastro de Disciplina na Turma</string>
     <string name="cadastro_de_turma_aluno">Cadastro de Aluno na Turma</string>
     <string name="edNomeAluno">Nome do Aluno</string>
-    <string name="lancarNotas">Lançar Notas</string>
+    <string name="lancarNotaFrequencia">Lançar Notas e Frequências</string>
     <string name="lancarFrequencias">Lançar Frequências</string>
+    <string name="edNota">Nota</string>
+    <string name="edFrequencia">Frequência</string>
+    <string name="situacao">Situação</string>
 </resources>

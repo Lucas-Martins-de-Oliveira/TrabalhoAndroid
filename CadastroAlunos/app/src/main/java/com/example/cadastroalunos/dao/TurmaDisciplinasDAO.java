@@ -2,6 +2,7 @@ package com.example.cadastroalunos.dao;
 
 import android.util.Log;
 
+import com.example.cadastroalunos.model.TurmaAlunos;
 import com.example.cadastroalunos.model.TurmaDisciplinas;
 
 import java.util.ArrayList;
@@ -35,6 +36,31 @@ public class TurmaDisciplinasDAO {
         }
         return list;
     }
+
+    public static List<TurmaDisciplinas> retornaTurmaDisciplinasByTurma(long idTurma){
+        List<TurmaDisciplinas> list = new ArrayList<>();
+        try{
+            list = TurmaDisciplinas.find(TurmaDisciplinas.class, "id_turma = ?", new String[]{String.valueOf(idTurma)}, "", "", "");
+        }catch (Exception ex){
+            Log.e("Erro", "Erro ao retornar lista de Turma Disciplinas: "+ex.getMessage());
+        }
+        return list;
+    }
+
+    public static TurmaDisciplinas retornaTurmaDisciplinaByTurmaByDisciplina(long idTurma, long idDisciplina){
+        List<TurmaDisciplinas> list = new ArrayList<>();
+        try{
+            list = TurmaDisciplinas.find(TurmaDisciplinas.class, "id_turma = ? and id_disciplina = ?", new String[]{String.valueOf(idTurma), String.valueOf(idDisciplina)}, "", "", "");
+            if (list.isEmpty()) {
+                return null;
+            }
+            return list.get(0);
+        }catch (Exception ex){
+            Log.e("Erro", "Erro ao retornar lista de Turma Disciplina: "+ex.getMessage());
+        }
+        return null;
+    }
+
 
     public static boolean delete(TurmaDisciplinas turmaDisciplinas){
         try{
