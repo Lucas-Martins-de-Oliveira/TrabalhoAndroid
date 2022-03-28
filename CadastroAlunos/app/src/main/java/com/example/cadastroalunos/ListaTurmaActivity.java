@@ -35,6 +35,8 @@ public class ListaTurmaActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Listagem de Turmas");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         lnLista = findViewById(R.id.lnListaTurma);
         atualizaListaTurma();
@@ -64,6 +66,9 @@ public class ListaTurmaActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mn_add:
                 abrirCadastroTurma();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

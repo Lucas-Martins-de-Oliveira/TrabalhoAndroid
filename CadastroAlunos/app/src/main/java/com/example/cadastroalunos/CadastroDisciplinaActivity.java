@@ -40,8 +40,9 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_disciplina);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Cadastro de Disciplina");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         edNomeDisciplina = findViewById(R.id.edNomeDisciplina);
         lnPrincipal = findViewById(R.id.lnPrincipal);
@@ -70,7 +71,7 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
 
     private void limparCampos() {
         edNomeDisciplina.setText("");
-        spProfessor.setSelection(Adapter.NO_SELECTION);
+        spProfessor.setSelection(0);
     }
 
     public void salvarDisciplina(){
@@ -107,6 +108,9 @@ public class CadastroDisciplinaActivity extends AppCompatActivity {
             case R.id.mn_salvar:
                 //TODO: adicionar método  de salvar dados
                 validaCampos();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

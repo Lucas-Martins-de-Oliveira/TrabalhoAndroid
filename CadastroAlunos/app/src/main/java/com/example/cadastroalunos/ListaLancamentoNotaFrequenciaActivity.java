@@ -44,8 +44,9 @@ public class ListaLancamentoNotaFrequenciaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_lancamento_nota_frequencia);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Listagem de Notas e Frequências");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         lnLista = findViewById(R.id.lnLista);
 
@@ -64,6 +65,9 @@ public class ListaLancamentoNotaFrequenciaActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mn_add:
                 abrirLancamentoNotasFrequencia();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

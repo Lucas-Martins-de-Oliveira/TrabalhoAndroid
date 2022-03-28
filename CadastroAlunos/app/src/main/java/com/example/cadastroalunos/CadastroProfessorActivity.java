@@ -28,6 +28,8 @@ public class CadastroProfessorActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Cadastro de Professores");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
         
         edNomeProfessor = findViewById(R.id.edNomeProfessor);
         edCpfProfessor = findViewById(R.id.edCpfProfessor);
@@ -79,6 +81,9 @@ public class CadastroProfessorActivity extends AppCompatActivity {
                 return true;
             case R.id.mn_salvar:
                 validaCampos();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

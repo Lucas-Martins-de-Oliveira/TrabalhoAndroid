@@ -41,7 +41,7 @@ public class Disciplina extends SugarRecord {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Disciplina disciplina = (Disciplina) obj;
-        return ((nome == disciplina.nome) && (idProfessor == disciplina.idProfessor));
+        return (nome == disciplina.nome);
     }
 
     @NonNull

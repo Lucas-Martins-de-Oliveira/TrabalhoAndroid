@@ -84,6 +84,9 @@ public class LancamentoNotaFrequenciaActivity extends AppCompatActivity {
                 //TODO: adicionar método  de salvar dados
                 validaCampos();
                 return true;
+            case android.R.id.home:
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -43,6 +43,8 @@ public class CadastroTurmaActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Cadastro de Turma");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         edDescricaoTurma = findViewById(R.id.edDescricaoTurma);
         edRegimeTurma = findViewById(R.id.edRegimeTurma);
@@ -102,6 +104,9 @@ public class CadastroTurmaActivity extends AppCompatActivity {
                 return true;
             case R.id.mn_salvar:
                 validaCampos();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

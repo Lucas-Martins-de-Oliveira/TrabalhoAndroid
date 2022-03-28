@@ -35,6 +35,9 @@ public class ListaProfessorActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Listagem de Professores");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
 
         lnLista = findViewById(R.id.lnListaProfessor);
         atualizaListaProfessor();
@@ -65,6 +68,9 @@ public class ListaProfessorActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mn_add:
                 abrirCadastroProfessor();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

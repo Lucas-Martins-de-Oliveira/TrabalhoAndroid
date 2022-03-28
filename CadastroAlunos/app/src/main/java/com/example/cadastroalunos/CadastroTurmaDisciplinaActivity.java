@@ -48,6 +48,8 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Cadastro de Disciplinas na Turma");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         lnPrincipal = findViewById(R.id.lnPrincipal);
 
@@ -73,13 +75,17 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
             case R.id.mn_salvar:
                 validaCampos();
                 return true;
+            case android.R.id.home:
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     private void limparCampos() {
-        // TODO: Implementar o limpar campos
+        spDisciplina.setSelection(0);
+        spTurma.setSelection(0);
     }
 
     private void iniciaSpinnerTurma() {
@@ -187,6 +193,8 @@ public class CadastroTurmaDisciplinaActivity extends AppCompatActivity {
         }
 
         listDisciplina.add(disciplina);
+
+        spDisciplina.setSelection(0);
 
         atualizaListaDisciplina();
     }

@@ -35,8 +35,9 @@ public class ListaDisciplinaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_disciplina);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Listagem de Disciplinas");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         lnListaDisciplinas = findViewById(R.id.lnListaDisciplinas);
 
@@ -67,6 +68,9 @@ public class ListaDisciplinaActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mn_add:
                 abrirCadastroDisciplina();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -59,8 +59,9 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_aluno);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Cadastro de Aluno");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         edRaAluno = findViewById(R.id.edRaAluno);
         edNomeAluno = findViewById(R.id.edNomeAluno);
@@ -199,6 +200,9 @@ public class CadastroAlunoActivity extends AppCompatActivity {
                 //TODO: adicionar método  de salvar dados
                 validaCampos();
                 return true;
+            case android.R.id.home:
+                finish();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -210,6 +214,9 @@ public class CadastroAlunoActivity extends AppCompatActivity {
         edCpfAluno.setText("");
         edDtNascAluno.setText("");
         edDtMatAluno.setText("");
+        spCursos.setSelection(0);
+        spPeriodo.setSelection(0);
+        spTurmaAluno.setSelection(0);
     }
 
     public void selecionarData(View view) {

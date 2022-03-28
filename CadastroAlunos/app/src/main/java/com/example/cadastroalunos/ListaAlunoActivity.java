@@ -34,8 +34,9 @@ public class ListaAlunoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_aluno);
 
         ActionBar actionBar = getSupportActionBar();
-
         actionBar.setTitle("Listagem de Alunos");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
 
         lnLista = findViewById(R.id.lnLista);
 
@@ -66,6 +67,9 @@ public class ListaAlunoActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.mn_add:
                 abrirCadastroAluno();
+                return true;
+            case android.R.id.home:
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
