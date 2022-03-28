@@ -22,7 +22,7 @@ public class TurmaDisciplinasDAO {
         try{
             return TurmaDisciplinas.findById(TurmaDisciplinas.class, id);
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao retornar a Turma Disciplina: "+ex.getMessage());
+            Log.e("Erro", "Erro ao retornar a Disciplina na Turma: "+ex.getMessage());
             return null;
         }
     }
@@ -32,7 +32,7 @@ public class TurmaDisciplinasDAO {
         try{
             list = TurmaDisciplinas.find(TurmaDisciplinas.class, where, whereArgs, "", orderBy, "");
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao retornar lista de Turma Disciplinas: "+ex.getMessage());
+            Log.e("Erro", "Erro ao retornar lista de Disciplinas na Turma: "+ex.getMessage());
         }
         return list;
     }
@@ -42,7 +42,7 @@ public class TurmaDisciplinasDAO {
         try{
             list = TurmaDisciplinas.find(TurmaDisciplinas.class, "id_turma = ?", new String[]{String.valueOf(idTurma)}, "", "", "");
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao retornar lista de Turma Disciplinas: "+ex.getMessage());
+            Log.e("Erro", "Erro ao retornar lista de Disciplina na Turma: "+ex.getMessage());
         }
         return list;
     }
@@ -56,7 +56,7 @@ public class TurmaDisciplinasDAO {
             }
             return list.get(0);
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao retornar lista de Turma Disciplina: "+ex.getMessage());
+            Log.e("Erro", "Erro ao retornar lista de Disciplina na Turma: "+ex.getMessage());
         }
         return null;
     }
@@ -66,7 +66,7 @@ public class TurmaDisciplinasDAO {
         try{
             return TurmaDisciplinas.delete(turmaDisciplinas);
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao apagar a Turma Disciplina: "+ex.getMessage());
+            Log.e("Erro", "Erro ao apagar a Disciplina na Turma: "+ex.getMessage());
             return false;
         }
     }

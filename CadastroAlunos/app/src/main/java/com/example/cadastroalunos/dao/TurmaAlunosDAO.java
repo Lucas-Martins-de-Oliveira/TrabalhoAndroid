@@ -21,7 +21,7 @@ public class TurmaAlunosDAO {
         try{
             return TurmaAlunos.findById(TurmaAlunos.class, id);
         }catch (Exception ex){
-            Log.e("Erro", "Erro ao retornar o Aluno Disciplina: "+ex.getMessage());
+            Log.e("Erro", "Erro ao retornar o Aluno na Turma: "+ex.getMessage());
             return null;
         }
     }

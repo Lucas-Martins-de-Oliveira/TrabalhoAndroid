@@ -39,7 +39,6 @@ public class AlunoLancamentosAdapter extends RecyclerView.Adapter<AlunoLancament
             edNota = (TextInputEditText)itemView.findViewById(R.id.edNota);
             edFrequencia = (TextInputEditText)itemView.findViewById(R.id.edFrequencia);
             edStatus = (TextInputEditText)itemView.findViewById(R.id.edStatusDisciplina);
-
         }
     }
 
@@ -63,7 +62,6 @@ public class AlunoLancamentosAdapter extends RecyclerView.Adapter<AlunoLancament
         holder.edNota.setText(ViewAlunoLancamento.getNota().toString());
         holder.edFrequencia.setText(ViewAlunoLancamento.getFrequencia().toString());
         holder.edStatus.setText(ViewAlunoLancamento.getStatus());
-
     }
 
     @Override
